@@ -1,41 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Snake Retro</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/addons/p5.sound.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <meta charset="utf-8" />
-
-  
-    <style>
-      body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        background-color: #111;
-        color: #fff;
-        font-family: Arial, sans-serif;
-      }
-
-      canvas {
-        border: 2px solid #fff;
-      }
-      h1{
-        margin: 20px;
-        margin-left: 225px;
-      }
-    </style>
   </head>
   <body>
-    <main>
-      <title>Ping Pog</title>
-      <h1>Jogo Pong</h1>
+    <main class="app-shell">
+      <header class="app-header">
+        <h1>SNAKE RETRO</h1>
+        <p class="subtitle">Coma, cresca e sobreviva</p>
+      </header>
+
+      <section class="game-stage">
+        <div id="p5-root" class="canvas-shell" aria-label="Area do jogo"></div>
+
+        <div id="start-overlay" class="overlay animate__animated">
+          <h2>Preparada para jogar?</h2>
+          <p id="start-hint">Setas movem a cobra. No celular, use toque ou swipe na tela.</p>
+          <div class="difficulty-group" role="group" aria-label="Selecionar dificuldade">
+            <button class="difficulty-btn is-active" data-difficulty="easy">Facil</button>
+            <button class="difficulty-btn" data-difficulty="medium">Medio</button>
+            <button class="difficulty-btn" data-difficulty="hard">Dificil</button>
+          </div>
+          <button id="start-btn" class="action-btn">Iniciar (ESPACO)</button>
+        </div>
+
+        <div id="game-over-overlay" class="overlay is-hidden animate__animated">
+          <h2>Game Over</h2>
+          <p id="game-over-text">Sua pontuacao: 0</p>
+          <button id="restart-btn" class="action-btn">Jogar de novo (R)</button>
+        </div>
+      </section>
+
+      <section class="touch-controls" aria-label="Controles touch">
+        <button class="touch-btn" data-dir="up">↑</button>
+        <div class="touch-row">
+          <button class="touch-btn" data-dir="left">←</button>
+          <button class="touch-btn" data-dir="down">↓</button>
+          <button class="touch-btn" data-dir="right">→</button>
+        </div>
+      </section>
     </main>
-    
-   
-   
+
     <script src="/scripts/sketch.js"></script> 
   </body>
 </html>
