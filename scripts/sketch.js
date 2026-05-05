@@ -443,6 +443,8 @@ function cacheUiElements() {
   ui.restartBtn = document.getElementById("restart-btn");
   ui.difficultyButtons = document.querySelectorAll(".difficulty-btn");
   ui.canvasShell = document.querySelector(".canvas-shell");
+  ui.touchControls = document.querySelector(".touch-controls");
+  ui.touchButtons = document.querySelectorAll(".touch-btn");
 }
 
 function bindUiEvents() {
@@ -456,6 +458,17 @@ function bindUiEvents() {
       button.classList.add("is-active");
       resetGameState();
       updateUi();
+    });
+  });
+
+  const dirMap = { up: { x: 0, y: -1 }, down: { x: 0, y: 1 }, left: { x: -1, y: 0 }, right: { x: 1, y: 0 } };
+  ui.touchButtons.forEach((btn) => {
+    btn.addEventListener("touchstart", (event) => {
+      event.preventDefault();
+      const dir = dirMap[btn.dataset.dir];
+      if (dir && gameState === "playing") {
+        queueDirection(dir.x, dir.y);
+      }
     });
   });
 
@@ -512,8 +525,9 @@ function updateResponsiveStageSize() {
     parseFloat(bodyStyles.paddingLeft) + parseFloat(bodyStyles.paddingRight);
 
   const appGap = parseFloat(appStyles.rowGap || appStyles.gap) || 16;
+  const touchControlsHeight = ui.touchControls ? ui.touchControls.offsetHeight : 0;
   const occupiedHeight =
-    ui.appHeader.offsetHeight + bodyPaddingY + appGap * 2;
+    ui.appHeader.offsetHeight + touchControlsHeight + bodyPaddingY + appGap * 2;
 
   const maxByHeight = window.innerHeight - occupiedHeight;
   const maxByWidth =
