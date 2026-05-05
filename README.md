@@ -1,22 +1,39 @@
-# Jogo da Cobrinha
+# Snake Retro
 
-Este repositório contém uma implementação simples do clássico jogo da cobrinha utilizando a biblioteca [p5.js](https://p5js.org/).
+Projeto pessoal do jogo da cobrinha modernizado com visual retrô, mantendo base simples em HTML, CSS, JavaScript e [p5.js](https://p5js.org/).
 
-## Como jogar
-- Use as teclas de seta (↑ ↓ ← →) para mover a cobra.
-- Coma a comida para crescer e aumentar a velocidade.
-- Evite colidir com as bordas da tela; ao tocar nelas o jogo termina.
+## Recursos da versao atual
+- Visual arcade retrô com HUD de score, recorde, nivel e estado do jogo.
+- Estados de jogo: tela inicial, jogando e game over.
+- Seletor de dificuldade: Facil, Medio e Dificil.
+- Recorde salvo em `localStorage`.
+- Feedback visual ao coletar comida e ao perder.
+- Suporte a teclado e touch (botoes e swipe).
+- Layout responsivo para desktop e mobile.
 
-## Execução
-Nenhuma dependência adicional é necessária. Para jogar:
+## Controles
+- `Setas` para mover a cobra.
+- `Espaco` para iniciar o jogo.
+- `R` para reiniciar na tela de game over.
+- No mobile: swipe na area do jogo ou botoes de direcao.
 
-1. Clone o repositório ou faça o download dos arquivos.
-2. Abra o arquivo `index.html` em um navegador moderno ou sirva o diretório com uma ferramenta como `npx http-server` ou a extensão **Live Server** do VS Code.
+## Regras
+- Coma a comida para aumentar o score e crescer.
+- A cada comida, a velocidade aumenta levemente.
+- Bater na parede ou no proprio corpo encerra a partida.
 
-## Estrutura do projeto
+## Como executar
+Nao precisa instalar dependencias de build.
+
+1. Clone o repositório ou baixe os arquivos.
+2. Abra `index.html` no navegador.
+3. Opcional: rode com servidor local, por exemplo `npx http-server`, para facilitar desenvolvimento.
+
+## Estrutura
 ```
-index.html        # Ponto de entrada do jogo
-scripts/          # Lógica do jogo em JavaScript
-css/              # Estilos
+index.html        # Estrutura da interface e carregamento dos scripts
+scripts/sketch.js # Lógica do jogo e interações
+css/style.css     # Tema retrô, HUD, overlays e responsividade
 img/              # Recursos visuais
+biblioteca_p5/    # Bibliotecas locais do p5 (não obrigatórias nesta versão)
 ```
