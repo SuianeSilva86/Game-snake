@@ -157,6 +157,16 @@ body {
 
 .touch-controls {
   display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 0 4px;
+}
+
+@media (pointer: coarse) {
+  .touch-controls {
+    display: flex;
+  }
 }
 
 .touch-row {
@@ -165,8 +175,13 @@ body {
 }
 
 .touch-btn {
-  width: 58px;
-  height: 52px;
+  width: 64px;
+  height: 58px;
+  font-size: 1.35rem;
+  border-radius: 8px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
 
 .pulse {
