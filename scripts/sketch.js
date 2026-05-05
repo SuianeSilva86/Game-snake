@@ -297,6 +297,12 @@ function restartGame() {
   startGame();
 }
 
+function syncDifficultyButtons() {
+  document.querySelectorAll(".difficulty-btn").forEach((btn) => {
+    btn.classList.toggle("is-active", btn.dataset.difficulty === selectedDifficulty);
+  });
+}
+
 function resetGameState() {
   snake = [
     { x: 10, y: 17 },
@@ -324,6 +330,7 @@ function setGameOver() {
   }
 
   ui.gameOverText.textContent = `Sua pontuacao: ${score} | Recorde: ${highScore}`;
+  syncDifficultyButtons();
   ui.canvasShell.classList.remove("shake");
   void ui.canvasShell.offsetWidth;
   ui.canvasShell.classList.add("shake");
@@ -442,6 +449,7 @@ function cacheUiElements() {
   ui.startBtn = document.getElementById("start-btn");
   ui.restartBtn = document.getElementById("restart-btn");
   ui.difficultyButtons = document.querySelectorAll(".difficulty-btn");
+  ui.goDifficultyButtons = document.querySelectorAll(".go-difficulty-btn");
   ui.canvasShell = document.querySelector(".canvas-shell");
   ui.touchControls = document.querySelector(".touch-controls");
   ui.touchButtons = document.querySelectorAll(".touch-btn");
@@ -454,9 +462,19 @@ function bindUiEvents() {
   ui.difficultyButtons.forEach((button) => {
     button.addEventListener("click", () => {
       selectedDifficulty = button.dataset.difficulty;
-      ui.difficultyButtons.forEach((item) => item.classList.remove("is-active"));
-      button.classList.add("is-active");
+      syncDifficultyButtons();
       resetGameState();
+      updateUi();
+    });
+  });
+
+  ui.goDifficultyButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      selectedDifficulty = button.dataset.difficulty;
+      syncDifficultyButtons();
+      resetGameState();
+      showOverlay(ui.gameOverOverlay);
+      hideOverlay(ui.startOverlay);
       updateUi();
     });
   });
